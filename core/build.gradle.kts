@@ -47,6 +47,13 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
+    //Decompose
+    implementation(libs.decompose)
+    implementation(libs.decompose.compose)
+
+    //Arkivanov Essenty
+    implementation(libs.arkivanov.essenty)
+
     implementation(libs.androidx.material3)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
