@@ -1,6 +1,6 @@
 [versions]
 agp = "8.3.2"
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -13,6 +13,12 @@ appcompat = "1.6.1"
 material = "1.11.0"
 decompose = "2.2.2"
 arkivanovEssenty = "1.3.0"
+uiToolingPreviewAndroid = "1.6.6"
+uiTooling = "1.6.6"
+coil = "2.6.0"
+ksp = "1.9.22-1.0.17"
+dagger = "2.51.1"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,10 +40,17 @@ arkivanov-essenty = { group = "com.arkivanov.essenty", name = "lifecycle", versi
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+coil = {group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
+dagger = {group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
+kapt-dagger = {group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
+ksp = {id = "com.google.devtools.ksp", version.ref = "ksp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

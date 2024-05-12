@@ -29,16 +29,16 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
@@ -54,7 +54,13 @@ dependencies {
     //Arkivanov Essenty
     implementation(libs.arkivanov.essenty)
 
+    //Material3
     implementation(libs.androidx.material3)
+
+    //Dagger
+    //implementation(libs.dagger)
+    //implementation(libs.ksp.dagger)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

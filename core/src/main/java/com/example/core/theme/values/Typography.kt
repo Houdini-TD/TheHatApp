@@ -29,6 +29,11 @@ val AppTypography = CustomTypography(
             fontFamily = OswaldFontFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 30.sp
+        ),
+        h3 = TextStyle(
+            fontFamily = OswaldFontFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 25.sp
         )
     ),
     body = BodyTypography(

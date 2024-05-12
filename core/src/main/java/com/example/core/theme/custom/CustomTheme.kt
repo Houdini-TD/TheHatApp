@@ -6,19 +6,26 @@ import androidx.compose.runtime.ReadOnlyComposable
 
 @Composable
 fun CustomTheme(
+    m3Colors: M3CustomColors,
     colors: CustomColors,
     typography: CustomTypography,
     content: @Composable () -> Unit
 ){
     CompositionLocalProvider(
         LocalCustomColors provides colors,
-        LocalCustomTypography provides typography
+        LocalCustomTypography provides typography,
+        LocalM3CustomColors provides m3Colors
     ) {
         content()
     }
 }
 
 object CustomTheme{
+    val m3Colors: M3CustomColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalM3CustomColors.current
+            ?: throw Exception("M3CustomColors is not provided. Did you forget to apply CustomTheme?")
     val colors: CustomColors
         @Composable
         @ReadOnlyComposable

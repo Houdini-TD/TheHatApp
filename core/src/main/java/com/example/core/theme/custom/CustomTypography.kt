@@ -3,6 +3,9 @@ package com.example.core.theme.custom
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 
+fun TextStyle.toSpanStyle(){
+
+}
 
 data class CustomTypography(
     val title: TitleTypography,
@@ -13,6 +16,7 @@ data class CustomTypography(
 data class TitleTypography(
     val h1: TextStyle,
     val h2: TextStyle,
+    val h3: TextStyle
 )
 
 data class BodyTypography(

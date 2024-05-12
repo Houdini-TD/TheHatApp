@@ -22,4 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "TheHatApp"
 include(":app")
 include(":core")
-include(":features")
+include(":feature-home")
+include(":feature-root")
+include(":feature-feed")

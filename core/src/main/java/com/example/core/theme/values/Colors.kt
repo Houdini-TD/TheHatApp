@@ -16,10 +16,11 @@ val DarkAppColors = CustomColors(
     ),
     text = TextColors(
         primary = Color(0xFFF0F0F0),
-        secondary = Color(0xFFF7931E)
+        secondary = Color(0xFFF7931E),
+        inverted = Color(0xFF131313)
     ),
     icon = IconColors(
-        primary = Color(0xFFF0F0F0)
+        primary = Color(0xFF131313)
     ),
     button = ButtonColors(
         primary = Color(0xFFFFB82B)

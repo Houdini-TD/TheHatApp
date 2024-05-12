@@ -18,7 +18,8 @@ data class BackgroundColors(
 
 data class TextColors(
     val primary: Color,
-    val secondary: Color
+    val secondary: Color,
+    val inverted: Color
 )
 
 data class IconColors(
