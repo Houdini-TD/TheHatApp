@@ -14,8 +14,7 @@ interface IEventFlow {
 
     fun interface Factory{
         operator fun invoke(
-            componentContext: ComponentContext,
-            event: Event?
+            componentContext: ComponentContext
         ): IEventFlow
     }
     sealed class Child(){

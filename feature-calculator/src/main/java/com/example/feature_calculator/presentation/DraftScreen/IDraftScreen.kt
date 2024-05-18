@@ -12,7 +12,7 @@ interface IDraftScreen {
     val spendingGroupBlocks: StateFlow<List<ISpendingGroupBlock>>
 
     fun interface Factory{
-        operator fun invoke(componentContext: ComponentContext): ComponentContext
+        operator fun invoke(componentContext: ComponentContext, event: Event): ComponentContext
     }
 
 }

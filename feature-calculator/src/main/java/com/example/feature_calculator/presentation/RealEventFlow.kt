@@ -14,23 +14,24 @@ import dagger.assisted.AssistedInject
 import kotlinx.serialization.Serializable
 
 class RealEventFlow @AssistedInject internal constructor(
-    @Assisted private var event: Event? = null,
     private val initializationScreenFactory: IInitializationScreen.Factory,
     @Assisted componentContext: ComponentContext
 ): ComponentContext by componentContext, IEventFlow {
+
+
 
     val navigation = StackNavigation<ChildConfig>()
 
     override val childStack = childStack(
         source = navigation,
-        initialConfiguration = if (event == null) ChildConfig.Initialization else ChildConfig.Draft,
+        initialConfiguration = ChildConfig.Initialization,
         serializer = ChildConfig.serializer(),
         handleBackButton = true,
         childFactory = ::createChild
     ).toStateFlow(lifecycle)
 
     override fun onInitializationFinished(newEvent: Event) {
-        event = newEvent
+        //event = newEvent
     }
 
     private fun createChild(
@@ -58,8 +59,7 @@ class RealEventFlow @AssistedInject internal constructor(
     @AssistedFactory
     interface Factory: IEventFlow.Factory {
         override fun invoke(
-            componentContext: ComponentContext,
-            event: Event?
+            componentContext: ComponentContext
             ): RealEventFlow
     }
 

@@ -48,6 +48,7 @@ android {
 dependencies {
 
     implementation(libs.androidx.ui.tooling.preview.android)
+    implementation(project(":feature-calculator"))
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
