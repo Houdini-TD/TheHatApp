@@ -75,6 +75,7 @@ dependencies {
     implementation(project(":feature-root"))
     implementation(project(":feature-home"))
     implementation(project(":feature-feed"))
+    implementation(project(":feature-calculator"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

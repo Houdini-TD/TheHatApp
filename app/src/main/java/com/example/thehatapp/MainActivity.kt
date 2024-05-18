@@ -13,7 +13,6 @@ class MainActivity : ComponentActivity() {
 
         val rootComponent = DaggerMainDaggerComponent.create().rootComponentFactory(defaultComponentContext())
 
-
         setContent {
             AppTheme {
                 RootComponentUI(rootComponent)

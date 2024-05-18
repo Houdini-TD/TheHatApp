@@ -75,6 +75,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":feature-home"))
     implementation(project(":feature-feed"))
+    implementation(project(":feature-calculator"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

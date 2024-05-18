@@ -7,13 +7,14 @@ data class CustomColors (
     val background: BackgroundColors,
     val text: TextColors,
     val icon: IconColors,
-    val button: ButtonColors,
+    val button: CoreButtonColors,
     val overlay: OverlayColors
 )
 
 data class BackgroundColors(
     val screen: Color,
-    val card: Color
+    val card: Color,
+    val textField: Color
 )
 
 data class TextColors(
@@ -26,12 +27,13 @@ data class IconColors(
     val primary: Color
 )
 
-data class ButtonColors(
+data class CoreButtonColors(
     val primary: Color
 )
 
 data class OverlayColors(
-    val primary: Color
+    val primary: Color,
+    val accent: Color
 )
 
 val LocalCustomColors = staticCompositionLocalOf<CustomColors?> { null }

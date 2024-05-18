@@ -19,6 +19,8 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,25 +39,36 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.core.theme.AppTheme
 import com.example.core.theme.custom.CustomTheme
+import com.example.core.utils.compose.DefaultTopAppBar
 import com.example.core.utils.compose.ExpandableText
 import com.example.feature_feed.domain.Post
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedScreenUI(component: IFeedScreen){
     val posts by component.posts.collectAsState()
 
-    Surface(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(10.dp),
-        color = Color.Transparent
+    Scaffold(
+        containerColor = Color.Transparent,
+        topBar = { DefaultTopAppBar(label = "Новости") }
     ) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
+        Box(
+            Modifier.padding(it)
         ) {
-            items(posts.size) {
-                PostView(post = posts[it])
-                Spacer(modifier = Modifier.height(12.dp))
+            Surface(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(10.dp),
+                color = Color.Transparent
+            ) {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    items(posts.size) {
+                        PostView(post = posts[it])
+                        Spacer(modifier = Modifier.height(12.dp))
+                    }
+                }
             }
         }
     }

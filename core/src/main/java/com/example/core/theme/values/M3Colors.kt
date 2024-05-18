@@ -1,9 +1,13 @@
 package com.example.core.theme.values
 
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.CardColors
-import com.example.core.theme.custom.ButtonColors
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.Composable
 import com.example.core.theme.custom.CustomButtonColors
 import com.example.core.theme.custom.CustomCardColors
+import com.example.core.theme.custom.CustomTextFieldColors
+import com.example.core.theme.custom.CustomTheme
 import com.example.core.theme.custom.M3CustomColors
 
 val M3DarkAppColors = M3CustomColors(
@@ -23,11 +27,27 @@ val M3DarkAppColors = M3CustomColors(
     ),
     buttonColors = CustomButtonColors(
         primary = ButtonColors(
-            primary = DarkAppColors.button.primary
+            containerColor = DarkAppColors.button.primary,
+            contentColor = DarkAppColors.text.primary,
+            disabledContainerColor = DarkAppColors.button.primary,
+            disabledContentColor = DarkAppColors.text.primary
         ),
         secondary = ButtonColors(
-            primary = DarkAppColors.button.primary
-        )
+            containerColor = DarkAppColors.button.primary,
+            contentColor = DarkAppColors.text.primary,
+            disabledContainerColor = DarkAppColors.button.primary,
+            disabledContentColor = DarkAppColors.text.primary
+        ),
+    ),
+    textFieldColors = CustomTextFieldColors(
+        primary = @Composable {
+            TextFieldDefaults.colors().copy(
+                unfocusedContainerColor = CustomTheme.colors.background.textField,
+                focusedContainerColor = CustomTheme.colors.background.textField,
+                unfocusedTextColor = CustomTheme.colors.text.primary,
+                focusedTextColor = CustomTheme.colors.text.primary,
+            )
+        }
     )
 )
 

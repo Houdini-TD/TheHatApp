@@ -22,30 +22,40 @@ val AppTypography = CustomTypography(
     title = TitleTypography(
         h1 = TextStyle(
             fontFamily = OswaldFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 40.sp
+            fontWeight = FontWeight.Medium,
+            fontSize = 30.sp
         ),
         h2 = TextStyle(
             fontFamily = OswaldFontFamily,
             fontWeight = FontWeight.Normal,
-            fontSize = 30.sp
+            fontSize = 23.sp
         ),
         h3 = TextStyle(
             fontFamily = OswaldFontFamily,
             fontWeight = FontWeight.Normal,
-            fontSize = 25.sp
-        )
+            fontSize = 21.sp
+        ),
+        h4 = TextStyle(
+            fontFamily = OswaldFontFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 18.sp
+        ),
     ),
     body = BodyTypography(
         regular = TextStyle(
             fontFamily = FontFamily.Default,
-            fontSize = 18.sp
+            fontSize = 16.sp
+        ),
+        bold = TextStyle(
+            fontFamily = FontFamily.Default,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold
         )
     ),
     button = ButtonTypography(
         regular = TextStyle(
             fontFamily = FontFamily.Default,
-            fontSize = 18.sp
+            fontSize = 16.sp
         )
     )
 )

@@ -5,6 +5,7 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import com.example.core.utils.toStateFlow
+import com.example.feature_calculator.presentation.IEventFlow
 import com.example.feature_feed.IFeedFlow
 import com.example.feature_home.IHomeComponent
 import dagger.assisted.Assisted
@@ -15,6 +16,7 @@ import kotlinx.serialization.Serializable
 class RealRootComponent @AssistedInject internal constructor(
     private val homeFactory: IHomeComponent.Factory,
     private val feedFactory: IFeedFlow.Factory,
+    private val eventFactory: IEventFlow.Factory,
     @Assisted context: ComponentContext
 ) : ComponentContext by context, IRootComponent {
 
@@ -22,19 +24,24 @@ class RealRootComponent @AssistedInject internal constructor(
 
     override val childStack = childStack(
         source = navigation,
-        initialConfiguration = ChildConfig.Feed,
+        initialConfiguration = ChildConfig.Home,
         serializer = ChildConfig.serializer(),
         handleBackButton = true,
         childFactory = ::createChild
     ).toStateFlow(lifecycle)
 
-    override fun onHomeTabSelected() {
-        navigation.bringToFront(ChildConfig.Home)
+    override fun onTabClicked(tab: IRootComponent.MainNavTab) {
+        when (tab){
+            is IRootComponent.MainNavTab.Home -> navigation.bringToFront(ChildConfig.Home)
+            is IRootComponent.MainNavTab.Feed -> navigation.bringToFront(ChildConfig.Feed)
+            is IRootComponent.MainNavTab.Event -> navigation.bringToFront(ChildConfig.Event)
+        }
     }
 
-    override fun onFeedTabSelected() {
-        navigation.bringToFront(ChildConfig.Feed)
+    override fun onNewEventClicked() {
+        onTabClicked(IRootComponent.MainNavTab.Event)
     }
+
 
     private fun createChild(
         config: ChildConfig,
@@ -42,6 +49,7 @@ class RealRootComponent @AssistedInject internal constructor(
     ): IRootComponent.Child = when (config) {
         is ChildConfig.Home -> IRootComponent.Child.HomeChild(homeComponent(context))
         is ChildConfig.Feed -> IRootComponent.Child.FeedChild(feedComponent(context))
+        is ChildConfig.Event -> IRootComponent.Child.EventChild(eventComponent(context))
     }
 
     private fun homeComponent(context: ComponentContext): IHomeComponent =
@@ -54,6 +62,11 @@ class RealRootComponent @AssistedInject internal constructor(
             context
         )
 
+    private fun eventComponent(context: ComponentContext): IEventFlow =
+        eventFactory(
+            context
+        )
+
     @Serializable
     sealed interface ChildConfig{
         @Serializable
@@ -61,6 +74,8 @@ class RealRootComponent @AssistedInject internal constructor(
 
         @Serializable
         data object Feed: ChildConfig
+        @Serializable
+        data object Event: ChildConfig
     }
 
     @AssistedFactory

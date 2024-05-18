@@ -16,11 +16,13 @@ data class CustomTypography(
 data class TitleTypography(
     val h1: TextStyle,
     val h2: TextStyle,
-    val h3: TextStyle
+    val h3: TextStyle,
+    val h4: TextStyle
 )
 
 data class BodyTypography(
-    val regular: TextStyle
+    val regular: TextStyle,
+    val bold: TextStyle
 )
 
 data class ButtonTypography(

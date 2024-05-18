@@ -18,8 +18,8 @@ class RealMainScreen @AssistedInject internal constructor(
 
     @AssistedFactory
     interface Factory : IMainScreen.Factory{
-        override fun invoke(
-            componentContext: ComponentContext
-        ): RealMainScreen
+            override fun invoke(
+                componentContext: ComponentContext
+            ): RealMainScreen
     }
 }
