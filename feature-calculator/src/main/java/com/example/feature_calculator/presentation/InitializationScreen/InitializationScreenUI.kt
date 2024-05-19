@@ -55,7 +55,8 @@ fun InitializationScreenUI(component: IInitializationScreen) {
     ) {
         Box(modifier = Modifier.padding(it)) {
             Column(
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 EventNameBlock(value = name, onTextChanged = component::onNameChanged)
                 Spacer(modifier = Modifier.height(20.dp))
@@ -66,6 +67,18 @@ fun InitializationScreenUI(component: IInitializationScreen) {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 ParticipantList(participants = participants, component::deleteParticipant)
+
+                Button(
+                    colors = CustomTheme.m3Colors.buttonColors.primary,
+                    onClick = component::onCreateClick
+                ) {
+                    Text(
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        text = "Далее",
+                        style = CustomTheme.typography.title.h3,
+                        color = CustomTheme.colors.text.inverted
+                    )
+                }
             }
         }
     }

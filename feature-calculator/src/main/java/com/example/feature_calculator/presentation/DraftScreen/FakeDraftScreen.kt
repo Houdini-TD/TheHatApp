@@ -62,7 +62,7 @@ class FakeDraftScreen(): IDraftScreen {
                             id = 0,
                             name = "Помещение",
                             price = 9000.0,
-                            amount = 2,
+                            amount = 1,
                             payer = participants.value[1]
                         ),
 
@@ -96,8 +96,16 @@ class FakeDraftScreen(): IDraftScreen {
     )
     override val spendingGroupBlocks = MutableStateFlow(
         listOf(
-            FakeSpendingGroupBlock(),
-            FakeSpendingGroupBlock(),
+            FakeSpendingGroupBlock(event.value.spendingGroups[0]),
+            FakeSpendingGroupBlock(event.value.spendingGroups[1]),
         )
     )
+
+    override fun onNewGroupClick() {
+        TODO("Not yet implemented")
     }
+
+    override fun onNewSpendingClick(name: String, amount: Int, price: Double) {
+        TODO("Not yet implemented")
+    }
+}

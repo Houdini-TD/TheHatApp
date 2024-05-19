@@ -18,7 +18,8 @@ val DarkAppColors = CustomColors(
     text = TextColors(
         primary = Color(0xFFF0F0F0),
         secondary = Color(0xFFF7931E),
-        inverted = Color(0xFF131313)
+        inverted = Color(0xFF131313),
+        noAccent = Color(0xFF8B8B8B)
     ),
     icon = IconColors(
         primary = Color(0xFF131313)

@@ -3,6 +3,7 @@ package com.example.feature_calculator.presentation
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.push
 import com.example.core.utils.toStateFlow
 import com.example.feature_calculator.domain.Event
 import com.example.feature_calculator.presentation.DraftScreen.FakeDraftScreen
@@ -31,7 +32,7 @@ class RealEventFlow @AssistedInject internal constructor(
     ).toStateFlow(lifecycle)
 
     override fun onInitializationFinished(newEvent: Event) {
-        //event = newEvent
+        navigation.push(ChildConfig.Draft)
     }
 
     private fun createChild(
@@ -43,13 +44,13 @@ class RealEventFlow @AssistedInject internal constructor(
                 componentContext
             )
         )
-        is ChildConfig.Draft -> IEventFlow.Child.DraftChild(initializationScreen(
-            componentContext
-        ))
+        is ChildConfig.Draft -> IEventFlow.Child.DraftChild(
+            draftScreen(componentContext)
+        )
     }
 
     private fun initializationScreen(componentContext: ComponentContext): IInitializationScreen {
-        return initializationScreenFactory.invoke(componentContext)
+        return initializationScreenFactory.invoke(::onInitializationFinished, componentContext)
     }
 
     private fun draftScreen(componentContext: ComponentContext): IDraftScreen {

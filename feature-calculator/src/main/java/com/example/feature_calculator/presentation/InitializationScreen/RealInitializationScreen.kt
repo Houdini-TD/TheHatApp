@@ -1,6 +1,7 @@
 package com.example.feature_calculator.presentation.InitializationScreen
 
 import com.arkivanov.decompose.ComponentContext
+import com.example.feature_calculator.domain.Event
 import com.example.feature_calculator.domain.Participant
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -9,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
 class RealInitializationScreen @AssistedInject internal constructor(
+    @Assisted private val onInitializationFinished: (event: Event) -> Unit,
     @Assisted componentContext: ComponentContext
 ): ComponentContext by componentContext, IInitializationScreen{
 
@@ -45,8 +47,21 @@ class RealInitializationScreen @AssistedInject internal constructor(
          participants.update { list -> list.filter { it.id != id } }
     }
 
+    override fun onCreateClick() {
+        onInitializationFinished(
+            Event(
+                name = name.value,
+                participants = participants.value,
+                spendingGroups = emptyList()
+            )
+        )
+    }
+
     @AssistedFactory
     interface Factory: IInitializationScreen.Factory{
-        override fun invoke(componentContext: ComponentContext): RealInitializationScreen
+        override fun invoke(
+            onInitializationFinished: (event: Event) -> Unit,
+            componentContext: ComponentContext,
+        ): RealInitializationScreen
     }
 }

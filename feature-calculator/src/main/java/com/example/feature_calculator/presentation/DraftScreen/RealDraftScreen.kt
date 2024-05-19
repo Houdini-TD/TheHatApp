@@ -17,4 +17,11 @@ class RealDraftScreen @AssistedInject internal constructor(
     override val spendingGroupBlocks: StateFlow<List<ISpendingGroupBlock>>
         get() = TODO("Not yet implemented")
 
+    override fun onNewGroupClick() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onNewSpendingClick(name: String, amount: Int, price: Double) {
+        TODO("Not yet implemented")
+    }
 }

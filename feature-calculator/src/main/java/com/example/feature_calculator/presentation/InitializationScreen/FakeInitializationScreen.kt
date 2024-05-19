@@ -34,4 +34,8 @@ class FakeInitializationScreen(): IInitializationScreen{
         TODO("Not yet implemented")
     }
 
+    override fun onCreateClick() {
+        TODO("Not yet implemented")
+    }
+
 }

@@ -4,6 +4,7 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import com.example.core.theme.custom.CustomButtonColors
 import com.example.core.theme.custom.CustomCardColors
 import com.example.core.theme.custom.CustomTextFieldColors
@@ -33,8 +34,8 @@ val M3DarkAppColors = M3CustomColors(
             disabledContentColor = DarkAppColors.text.primary
         ),
         secondary = ButtonColors(
-            containerColor = DarkAppColors.button.primary,
-            contentColor = DarkAppColors.text.primary,
+            containerColor = Color.Transparent,
+            contentColor = DarkAppColors.background.card,
             disabledContainerColor = DarkAppColors.button.primary,
             disabledContentColor = DarkAppColors.text.primary
         ),

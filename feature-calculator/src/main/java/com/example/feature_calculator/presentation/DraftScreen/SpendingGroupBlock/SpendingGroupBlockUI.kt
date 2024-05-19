@@ -144,7 +144,7 @@ fun ExpandableContent(
                     color = CustomTheme.colors.text.primary
                 ) },
                 amount = { Text(
-                    text = "Кол-во",
+                    text = "Кол.",
                     style = CustomTheme.typography.title.h4,
                     color = CustomTheme.colors.text.primary
                 ) },
@@ -210,7 +210,7 @@ fun SpendingMarkUp(
         }
         Row(
             Modifier
-                .weight(1.4f)
+                .weight(1.5f)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically

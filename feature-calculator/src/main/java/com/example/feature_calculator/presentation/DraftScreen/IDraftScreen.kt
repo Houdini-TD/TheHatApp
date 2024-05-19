@@ -11,6 +11,10 @@ interface IDraftScreen {
 
     val spendingGroupBlocks: StateFlow<List<ISpendingGroupBlock>>
 
+    fun onNewGroupClick()
+
+    fun onNewSpendingClick(name: String, amount: Int, price: Double)
+
     fun interface Factory{
         operator fun invoke(componentContext: ComponentContext, event: Event): ComponentContext
     }

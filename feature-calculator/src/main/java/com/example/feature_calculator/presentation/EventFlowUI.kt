@@ -8,6 +8,7 @@ import com.arkivanov.decompose.extensions.compose.jetpack.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.animation.plus
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.animation.scale
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.animation.stackAnimation
+import com.example.feature_calculator.presentation.DraftScreen.DraftScreenUI
 import com.example.feature_calculator.presentation.InitializationScreen.InitializationScreenUI
 
 @Composable
@@ -21,7 +22,7 @@ fun EventFlowUI(component: IEventFlow){
     ) {
         when (val child = it.instance){
             is IEventFlow.Child.InitializationChild -> InitializationScreenUI(component = child.component)
-            is IEventFlow.Child.DraftChild -> InitializationScreenUI(component = child.component)
+            is IEventFlow.Child.DraftChild -> DraftScreenUI(component = child.component)
         }
     }
 
