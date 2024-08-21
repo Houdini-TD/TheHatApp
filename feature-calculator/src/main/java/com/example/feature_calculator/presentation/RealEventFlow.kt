@@ -6,6 +6,7 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.push
 import com.example.core.utils.toStateFlow
 import com.example.feature_calculator.domain.Event
+import com.example.feature_calculator.presentation.DraftScreen.FakeDraftScreen
 import com.example.feature_calculator.presentation.DraftScreen.IDraftScreen
 import com.example.feature_calculator.presentation.InitializationScreen.IInitializationScreen
 import dagger.assisted.Assisted
@@ -53,7 +54,8 @@ class RealEventFlow @AssistedInject internal constructor(
     }
 
     private fun draftScreen(componentContext: ComponentContext): IDraftScreen {
-        return draftScreenFactory.invoke(componentContext, event ?: Event.Empty)
+        return FakeDraftScreen()
+        //return draftScreenFactory.invoke(componentContext, event ?: Event.Empty)
     }
 
     @AssistedFactory

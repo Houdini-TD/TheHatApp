@@ -54,58 +54,57 @@ class FakeDraftScreen(): IDraftScreen {
                     )
                 ),
 
-                SpendingGroup(
-                    id = 0,
-                    name = "Баня",
-                    spendings = mutableListOf(
-                        Spending(
-                            id = 0,
-                            name = "Помещение",
-                            price = 9000.0,
-                            amount = 1,
-                            payer = participants.value[1]
-                        ),
-
-                        Spending(
-                            id = 1,
-                            name = "Веники",
-                            price = 800.0,
-                            amount = 5,
-                            payer = participants.value[1]
-                        ),
-
-                        Spending(
-                            id = 3,
-                            name = "Салаты",
-                            price = 900.0,
-                            amount = 2,
-                            payer = participants.value[1]
-                        ),
-
-                        Spending(
-                            id = 2,
-                            name = "Такси",
-                            price = 1000.0,
-                            amount = 1,
-                            payer = participants.value[1]
-                        ),
-                    )
-                )
+//                SpendingGroup(
+//                    id = 0,
+//                    name = "Баня",
+//                    spendings = mutableListOf(
+//                        Spending(
+//                            id = 0,
+//                            name = "Помещение",
+//                            price = 9000.0,
+//                            amount = 1,
+//                            payer = participants.value[1]
+//                        ),
+//
+//                        Spending(
+//                            id = 1,
+//                            name = "Веники",
+//                            price = 800.0,
+//                            amount = 5,
+//                            payer = participants.value[1]
+//                        ),
+//
+//                        Spending(
+//                            id = 3,
+//                            name = "Салаты",
+//                            price = 900.0,
+//                            amount = 2,
+//                            payer = participants.value[1]
+//                        ),
+//
+//                        Spending(
+//                            id = 2,
+//                            name = "Такси",
+//                            price = 1000.0,
+//                            amount = 1,
+//                            payer = participants.value[1]
+//                        ),
+//                    )
+//                )
             )
         )
     )
     override val spendingGroupBlocks = MutableStateFlow(
         listOf(
-            FakeSpendingGroupBlock(event.value.spendingGroups[0]),
-            FakeSpendingGroupBlock(event.value.spendingGroups[1]),
+            FakeSpendingGroupBlock(event.value.spendingGroups[0])
         )
     )
 
     override fun onNewGroupClick() {
-        TODO("Not yet implemented")
+
     }
 
     override fun onNewSpendingClick(name: String, amount: Int, price: Double) {
-        TODO("Not yet implemented")
+
     }
 }
