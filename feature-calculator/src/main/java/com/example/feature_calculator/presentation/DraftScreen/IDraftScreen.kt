@@ -16,7 +16,7 @@ interface IDraftScreen {
     fun onNewSpendingClick(name: String, amount: Int, price: Double)
 
     fun interface Factory{
-        operator fun invoke(componentContext: ComponentContext, event: Event): ComponentContext
+        operator fun invoke(componentContext: ComponentContext, event: Event): IDraftScreen
     }
 
 }

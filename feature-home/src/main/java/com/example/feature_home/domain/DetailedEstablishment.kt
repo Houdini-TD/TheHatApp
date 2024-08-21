@@ -11,12 +11,12 @@ data class DetailedEstablishment(
              when (variation){
                  0 -> return DetailedEstablishment(
                      id = -1,
-                     name = "placeholder0",
+                     name = "Dog's Drum",
                      imageUrl = "https://hatgroup.ru/wp-content/uploads/2013/12/DSC_1755-2-620x420.jpg"
                  )
                  1 -> return DetailedEstablishment(
                      id = -2,
-                     name = "placeholder1",
+                     name = "John Fisher's",
                      imageUrl = "https://hatgroup.ru/wp-content/uploads/2015/12/thehatbar008-620x420.jpg"
                  )
                  2 -> return DetailedEstablishment(

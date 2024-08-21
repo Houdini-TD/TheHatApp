@@ -8,12 +8,12 @@ class FakeFeedScreen(): IFeedScreen {
 
     override val posts: StateFlow<MutableList<Post>> = MutableStateFlow(mutableListOf(
         Post(
-            header = "Юля нашла работу",
-            content = "Радостная новость: Юля наконец нашла работу! \uD83C\uDF89 После усердного поиска и " +
-                    "нескольких интервью она наконец-то нашла свое место в новой компании. Поздравим Юлю " +
-                    "с этим важным достижением и пожелаем ей успехов в новом этапе карьеры!",
+            header = "Бардовский вечер",
+            content = "Мы наконец сделали то, что так долго планировали! \uD83C\uDF89 После усердного поиска и " +
+                    "нескольких интервью Виктор Обсюркин наконец-то согласился выступить в нашей Собаке. Ну где ты была," +
+                    "Гимн обеду, Пам-Булум и много другое ждет вас в пятницу 28-го",
             images = listOf(
-                "https://hatgroup.ru/wp-content/uploads/2019/04/cup-logo-round-wide-400x273.png",
+                "https://sun9-74.userapi.com/impg/ABW-7kT4AEz9K8FJRgfCYW5a3NubfoxQ3gu0SA/pVzrRAGZ_Pk.jpg?size=810x1080&quality=96&sign=4f64f4bdf2559a06ba43ba3a5258bde5&type=album",
                 "https://hatgroup.ru/wp-content/uploads/2022/07/N36C4900-scaled.jpg",
                 "https://hatgroup.ru/wp-content/uploads/2019/04/cup-logo-round-wide-400x273.png",
                 "https://hatgroup.ru/wp-content/uploads/2022/07/N36C4900-scaled.jpg"

@@ -2,6 +2,7 @@ package com.example.feature_calculator.presentation.DraftScreen.SpendingGroupBlo
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,10 +12,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,14 +55,23 @@ fun SpendingGroupBlockUI(component: ISpendingGroupBlock) {
     val spendingGroup by component.spendingGroup.collectAsState()
 
     ExpandableCard(
-        topContent = { TopContent(
-            spendingGroup = spendingGroup,
-            trailingIconPadding = it
-        ) },
-        expandableContent = { ExpandableContent(
-            spendingGroup = spendingGroup,
-            component::onSpendingChanged
-            ) },
+        topContent = {
+            TopContent(
+                spendingGroup = spendingGroup,
+                trailingIconPadding = it
+            )
+        },
+        expandableContent = {
+            Column {
+                SpendingList(
+                    spendingGroup = spendingGroup,
+                    component::onSpendingChanged
+                )
+                AdvancedEditFooter(
+                    onClick = {}
+                )
+            }
+        },
         expanded = true
     )
 }
@@ -77,7 +92,7 @@ fun TopContent(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
-            ){
+            ) {
                 Text(
                     text = spendingGroup.name,
                     style = CustomTheme.typography.title.h2,
@@ -106,7 +121,7 @@ fun TopContent(
 }
 
 @Composable
-fun ParticipantView(participant: Participant?){
+fun ParticipantView(participant: Participant?) {
     Card(
         border = BorderStroke(2.dp, Color.Gray),
         colors = CustomTheme.m3Colors.cardColors.primary
@@ -124,7 +139,7 @@ fun ParticipantView(participant: Participant?){
 }
 
 @Composable
-fun ExpandableContent(
+fun SpendingList(
     spendingGroup: SpendingGroup,
     onSpendingChanged: (Spending) -> Unit,
 ) {
@@ -138,29 +153,37 @@ fun ExpandableContent(
             modifier = Modifier.padding(12.dp)
         ) {
             SpendingMarkUp(
-                name = { Text(
-                    text = "Наименование",
-                    style = CustomTheme.typography.title.h4,
-                    color = CustomTheme.colors.text.primary
-                ) },
-                amount = { Text(
-                    text = "Кол.",
-                    style = CustomTheme.typography.title.h4,
-                    color = CustomTheme.colors.text.primary
-                ) },
-                price = { Text(
-                    text = "Цена",
-                    style = CustomTheme.typography.title.h4,
-                    color = CustomTheme.colors.text.primary
-                ) },
-                total = { Text(
-                    text = "Сумма",
-                    style = CustomTheme.typography.title.h4,
-                    color = CustomTheme.colors.text.primary
-                ) },
+                name = {
+                    Text(
+                        text = "Наименование",
+                        style = CustomTheme.typography.title.h4,
+                        color = CustomTheme.colors.text.primary
+                    )
+                },
+                amount = {
+                    Text(
+                        text = "Кол.",
+                        style = CustomTheme.typography.title.h4,
+                        color = CustomTheme.colors.text.primary
+                    )
+                },
+                price = {
+                    Text(
+                        text = "Цена",
+                        style = CustomTheme.typography.title.h4,
+                        color = CustomTheme.colors.text.primary
+                    )
+                },
+                total = {
+                    Text(
+                        text = "Сумма",
+                        style = CustomTheme.typography.title.h4,
+                        color = CustomTheme.colors.text.primary
+                    )
+                },
             )
 
-            Box(Modifier.padding(top = 2.dp, bottom = 8.dp)){
+            Box(Modifier.padding(top = 2.dp, bottom = 8.dp)) {
                 Box(
                     modifier = Modifier
                         .border(3.dp, Color.Gray)
@@ -169,7 +192,7 @@ fun ExpandableContent(
                 )
             }
 
-            spendingGroup.spendings.forEach(){
+            spendingGroup.spendings.forEach() {
                 SpendingView(
                     spending = it,
                     {},
@@ -177,6 +200,43 @@ fun ExpandableContent(
                     {}
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun AdvancedEditFooter(
+    onClick: () -> Unit
+) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(
+                role = Role.Button,
+                onClick = onClick
+            ),
+        color = CustomTheme.colors.overlay.primary,
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(
+                    vertical = 6.dp
+                ),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Расширенное редактирование",
+                style = CustomTheme.typography.title.h3,
+                color = CustomTheme.colors.text.inverted
+            )
+            Spacer(Modifier.width(8.dp))
+            Icon(
+                modifier = Modifier.size(24.dp),
+                imageVector = Icons.Default.Edit,
+                tint = CustomTheme.colors.icon.primary,
+                contentDescription = ""
+            )
         }
     }
 }
@@ -196,7 +256,7 @@ fun SpendingMarkUp(
                 .weight(4f)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             name()
         }
         Row(
@@ -205,7 +265,7 @@ fun SpendingMarkUp(
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             amount()
         }
         Row(
@@ -214,7 +274,7 @@ fun SpendingMarkUp(
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             price()
         }
         Row(
@@ -223,7 +283,7 @@ fun SpendingMarkUp(
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             total()
         }
     }
@@ -235,7 +295,7 @@ fun SpendingView(
     onNameChanged: (String) -> Unit,
     onAmountChanged: (String) -> Unit,
     onPriceChanged: (String) -> Unit,
-){
+) {
 
     val textFieldDecorationBox = @Composable { content: @Composable () -> Unit ->
         Card(
@@ -255,64 +315,73 @@ fun SpendingView(
     }
 
     var nameState by remember { mutableStateOf(spending.name) }
-    val name = @Composable {CustomizableTextField(
-        placeholderText = "Введите наименование",
-        modifier = Modifier.fillMaxWidth(),
-        value = nameState,
-        onValueChange = {
-            nameState = it
-            onNameChanged(it) },
-        textStyle = CustomTheme.typography.body.regular,
-        textColor = CustomTheme.colors.text.primary,
-        decorationBox = textFieldDecorationBox
-    )}
+    val name = @Composable {
+        CustomizableTextField(
+            placeholderText = "Введите наименование",
+            modifier = Modifier.fillMaxWidth(),
+            value = nameState,
+            onValueChange = {
+                nameState = it
+                onNameChanged(it)
+            },
+            textStyle = CustomTheme.typography.body.regular,
+            textColor = CustomTheme.colors.text.primary,
+            decorationBox = textFieldDecorationBox
+        )
+    }
 
     var amountState by remember { mutableIntStateOf(spending.amount) }
-    val amount = @Composable {CustomizableTextField(
-        modifier = Modifier.fillMaxWidth(),
-        value = if (amountState != 0) amountState.toString() else "",
-        onValueChange = {
-            if (it.length < 3) {
-                amountState = it.toIntOrNull() ?: 0
-            }
-            onAmountChanged(it)
-        },
-        textStyle = CustomTheme.typography.body.regular,
-        textColor = CustomTheme.colors.text.primary,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-        decorationBox = textFieldDecorationBox
-    )}
+    val amount = @Composable {
+        CustomizableTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = if (amountState != 0) amountState.toString() else "",
+            onValueChange = {
+                if (it.length < 3) {
+                    amountState = it.toIntOrNull() ?: 0
+                }
+                onAmountChanged(it)
+            },
+            textStyle = CustomTheme.typography.body.regular,
+            textColor = CustomTheme.colors.text.primary,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            decorationBox = textFieldDecorationBox
+        )
+    }
 
     var priceState by remember { mutableDoubleStateOf(spending.price) }
-    val price = @Composable {CustomizableTextField(
-        modifier = Modifier.fillMaxWidth(),
-        value = if (priceState > 0) priceState.roundToInt().toString() else "",
-        onValueChange = {
-            if (it.length < 5) {
-                priceState = it.toDoubleOrNull() ?: 0.0
-            }
-            onPriceChanged(it)
-        },
-        textStyle = CustomTheme.typography.body.regular,
-        textColor = CustomTheme.colors.text.primary,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-        decorationBox = textFieldDecorationBox
-    )}
-
-    val total = @Composable {Surface(
-        modifier = Modifier
-            .padding(vertical = 2.dp),
-
-        shape = RoundedCornerShape(12.dp),
-        color = CustomTheme.colors.overlay.accent
-    ) {
-        Text(
-            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
-            text = spending.total.roundToInt().toString(),
-            style = CustomTheme.typography.body.regular,
-            color = CustomTheme.colors.text.inverted
+    val price = @Composable {
+        CustomizableTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = if (priceState > 0) priceState.roundToInt().toString() else "",
+            onValueChange = {
+                if (it.length < 5) {
+                    priceState = it.toDoubleOrNull() ?: 0.0
+                }
+                onPriceChanged(it)
+            },
+            textStyle = CustomTheme.typography.body.regular,
+            textColor = CustomTheme.colors.text.primary,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            decorationBox = textFieldDecorationBox
         )
-    }}
+    }
+
+    val total = @Composable {
+        Surface(
+            modifier = Modifier
+                .padding(vertical = 2.dp),
+
+            shape = RoundedCornerShape(12.dp),
+            color = CustomTheme.colors.overlay.accent
+        ) {
+            Text(
+                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                text = spending.total.roundToInt().toString(),
+                style = CustomTheme.typography.body.regular,
+                color = CustomTheme.colors.text.inverted
+            )
+        }
+    }
 
     SpendingMarkUp(
         name = { name() },

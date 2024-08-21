@@ -1,0 +1,9 @@
+package com.example.feature_calculator.presentation.DraftScreen.AdvancedGroupEditScreen
+
+import com.arkivanov.decompose.ComponentContext
+import com.example.feature_calculator.domain.Event
+import com.example.feature_calculator.presentation.DraftScreen.SpendingGroupBlock.ISpendingGroupBlock
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow

@@ -13,14 +13,15 @@ interface IEventFlow {
 
     fun onInitializationFinished(newEvent: Event)
 
-    fun interface Factory{
-        operator fun invoke(
-            componentContext: ComponentContext
-        ): IEventFlow
-    }
     sealed class Child(){
         class InitializationChild(val component: IInitializationScreen): Child()
         class DraftChild(val component: IDraftScreen): Child()
     }
 
+    fun interface Factory{
+        operator fun invoke(
+            componentContext: ComponentContext,
+            event: Event?
+        ): IEventFlow
+    }
 }

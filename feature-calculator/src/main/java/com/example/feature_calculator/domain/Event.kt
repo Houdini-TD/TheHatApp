@@ -8,12 +8,14 @@ data class Event(
     val participants: List<Participant>,
     val spendingGroups: List<SpendingGroup>
 ){
-//    val Default
-//        get() = Event(
-//            name = "New Event",
-//            participants = emptyList(),
-//            spendingGroups = emptyList()
-//        )
+    companion object{
+        val Empty = Event(
+            id = UUID.randomUUID(),
+            name = "NoName",
+            participants = listOf(Participant(name = "NoName")),
+            spendingGroups = emptyList()
+        )
+    }
 }
 
 data class SpendingGroup(

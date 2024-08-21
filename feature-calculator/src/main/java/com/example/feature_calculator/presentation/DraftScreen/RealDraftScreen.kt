@@ -4,6 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.example.feature_calculator.domain.Event
 import com.example.feature_calculator.presentation.DraftScreen.SpendingGroupBlock.ISpendingGroupBlock
 import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,5 +24,13 @@ class RealDraftScreen @AssistedInject internal constructor(
 
     override fun onNewSpendingClick(name: String, amount: Int, price: Double) {
         TODO("Not yet implemented")
+    }
+
+    @AssistedFactory
+    interface Factory: IDraftScreen.Factory{
+        override fun invoke(
+            componentContext: ComponentContext,
+            event: Event
+        ): RealDraftScreen
     }
 }

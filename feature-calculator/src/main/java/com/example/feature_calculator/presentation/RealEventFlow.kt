@@ -6,7 +6,6 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.push
 import com.example.core.utils.toStateFlow
 import com.example.feature_calculator.domain.Event
-import com.example.feature_calculator.presentation.DraftScreen.FakeDraftScreen
 import com.example.feature_calculator.presentation.DraftScreen.IDraftScreen
 import com.example.feature_calculator.presentation.InitializationScreen.IInitializationScreen
 import dagger.assisted.Assisted
@@ -16,10 +15,10 @@ import kotlinx.serialization.Serializable
 
 class RealEventFlow @AssistedInject internal constructor(
     private val initializationScreenFactory: IInitializationScreen.Factory,
+    private val draftScreenFactory: IDraftScreen.Factory,
+    @Assisted private val event: Event? = null,
     @Assisted componentContext: ComponentContext
 ): ComponentContext by componentContext, IEventFlow {
-
-
 
     val navigation = StackNavigation<ChildConfig>()
 
@@ -54,13 +53,14 @@ class RealEventFlow @AssistedInject internal constructor(
     }
 
     private fun draftScreen(componentContext: ComponentContext): IDraftScreen {
-        return FakeDraftScreen()
+        return draftScreenFactory.invoke(componentContext, event ?: Event.Empty)
     }
 
     @AssistedFactory
     interface Factory: IEventFlow.Factory {
         override fun invoke(
-            componentContext: ComponentContext
+            componentContext: ComponentContext,
+            event: Event?
             ): RealEventFlow
     }
 

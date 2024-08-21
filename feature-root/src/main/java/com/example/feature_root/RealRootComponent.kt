@@ -5,6 +5,7 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import com.example.core.utils.toStateFlow
+import com.example.feature_calculator.domain.Event
 import com.example.feature_calculator.presentation.IEventFlow
 import com.example.feature_feed.IFeedFlow
 import com.example.feature_home.IHomeComponent
@@ -64,7 +65,8 @@ class RealRootComponent @AssistedInject internal constructor(
 
     private fun eventComponent(context: ComponentContext): IEventFlow =
         eventFactory(
-            context
+            context,
+            Event.Empty
         )
 
     @Serializable

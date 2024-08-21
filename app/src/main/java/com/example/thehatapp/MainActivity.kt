@@ -10,9 +10,7 @@ import com.example.feature_root.RootComponentUI
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val rootComponent = DaggerMainDaggerComponent.create().rootComponentFactory(defaultComponentContext())
-
         setContent {
             AppTheme {
                 RootComponentUI(rootComponent)
